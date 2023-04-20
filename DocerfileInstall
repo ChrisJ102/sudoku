@@ -1,3 +1,0 @@
-# syntax=docker/dockerfile:1
-RUN apt update
-RUN apt-get install -y git npm && npm install --global yarn
