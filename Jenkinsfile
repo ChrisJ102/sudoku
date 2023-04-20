@@ -6,7 +6,7 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
-                    userRemoteConfigs: [[url: 'https://github.com/Jarczk/example-yarn-package']]])
+                    userRemoteConfigs: [[url: 'https://github.com/ChrisJ102/sudoku']]])
             }
         }
         stage('Install dependencies') {
