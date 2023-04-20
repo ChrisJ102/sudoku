@@ -10,13 +10,13 @@ pipeline {
             }
         }
         stage('Install dependencies') {
-            script {
-			sh 'docker rmi -f sudokudepen || true'
-                    
-			echo 'pre-docker'
-			sh 'docker build --no-cache -t sudokudepen:latest . -f DocerfileInstall'
-
-			echo 'Dependecies were successfully installed.'
+		steps{
+			script {
+				sh 'docker rmi -f sudokudepen || true'
+				echo 'pre-docker'
+				sh 'docker build --no-cache -t sudokudepen:latest . -f DocerfileInstall'
+				echo 'Dependecies were successfully installed.'
+			}
 		}
         }
         stage('Build') {
