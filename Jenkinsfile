@@ -14,7 +14,7 @@ pipeline {
                 nodejs('Node-18.14'){
                     echo 'Clean cache'
                     sh 'yarn cache clean'
-                    sh 'yarn'
+                    sh 'yarn install'
                 }
             }
         }
