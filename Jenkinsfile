@@ -6,29 +6,23 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']], 
-                    userRemoteConfigs: [[url: 'https://github.com/ChrisJ102/sudoku']]])
+                    userRemoteConfigs: [[url: 'https://github.com/Jarczk/example-yarn-package']]])
             }
         }
         stage('Install dependencies') {
-		steps{
-			script {
-				sh 'docker rmi -f sudokudepen || true'
-				echo 'pre-docker'
-				sh 'docker build --no-cache -t sudokudepen:latest . -f ./DocerfileInstall'
-				echo 'Dependecies were successfully installed.'
-			}
-		}
-        }
-        stage('Build') {
             steps {
-                script {
-                    sh 'docker rmi -f sudokubuild || true'
-                    sh 'docker volume create volume_wej'
-                    sh 'docker build --no-cache -t sudokubuild:latest . -f ./DockerfileBuild'
-                    sh 'docker run --mount type=volume,src="volume_wej",dst=wejscie sudokubuild:latest'
-                    
-                    echo 'Build was successfully completed.'
-		}
+                nodejs('Node-18.14'){
+                    echo 'Clean cache'
+                    sh 'yarn cache clean'
+                    sh 'yarn'
+                }
+            }
+        }
+        stage('Run tests') {
+            steps {
+                nodejs('Node-18.14'){
+                sh 'yarn test'
+                }
             }
         }
     }
