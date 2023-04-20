@@ -9,7 +9,7 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/ChrisJ102/sudoku']]])
             }
         }
-        stage('Install dependencies') {
+        stage('Build') {
             steps {
                 nodejs('Node20'){
                     echo 'Clean cache'
