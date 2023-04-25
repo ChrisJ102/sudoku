@@ -65,7 +65,7 @@ pipeline {
               sh 'docker rm -f pub || true'
               sh 'docker run -d --name sudoku_pub --mount type=volume,src="vol_wyjsciowy",dst=/usr/local/sudoku_pub --mount type=bind,source=/var/jenkins_home/workspace/sudoku_publish,target=/usr/local/pub_copy node bash -c "chmod -R 777 /usr/local/sudoku_pub && chmod -R 777 /var/jenkins_home/workspace/sudoku_publish && cp -R /usr/local/sudoku_pub/. /usr/local/pub_copy"'
                 sh "tar -zcvf cmake_${params.VERSION}.tar.xz -C /var/jenkins_home/workspace/sudoku_publish ."
-                archiveArtifacts artifacts: "cmake_${params.VERSION}.tar.xz"
+                archiveArtifacts artifacts: "sudoku_${params.VERSION}.tar"
                 
               sh ''' echo "Publish done" '''               
             }
