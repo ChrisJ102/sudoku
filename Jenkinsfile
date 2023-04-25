@@ -23,7 +23,7 @@ pipeline {
                     sh 'docker build -t sudokudep:latest -f DockerFileDep .'
                 }
             }
-      }
+      	}
         stage('Build') {
             steps {
                 nodejs('Node20'){
@@ -52,8 +52,7 @@ pipeline {
                 //sh 'docker container kill sudokudeploy'
             }
         }
-	stage ('Publish')
-        {
+	stage ('Publish'){
             when
             {
                 expression {return params.PROMOTE}
@@ -68,8 +67,7 @@ pipeline {
                 sh "tar -zcvf cmake_${params.VERSION}.tar.xz -C /var/jenkins_home/workspace/sudoku_publish ."
                 archiveArtifacts artifacts: "cmake_${params.VERSION}.tar.xz"
                 
-              sh ''' echo "Publish done" '''
-                
+              sh ''' echo "Publish done" '''               
             }
         }
     }
