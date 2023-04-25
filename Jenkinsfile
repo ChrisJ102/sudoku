@@ -13,20 +13,20 @@ pipeline {
         steps {
                 nodejs('Node20'){
                     echo 'Clean cache'
-                    sh 'docker build -t doc-dep:latest -f dockerfile-dep .'
+                    sh 'docker build -t sudokuDep:latest -f DockerFileDep .'
                 }
             }
       }
         stage('Build') {
             steps {
                 nodejs('Node20'){
-                    sh 'docker build -t doc-build -f dockerfile-build .'
+                    sh 'docker build -t sudokuBuild -f DockerFileBuild .'
                 }
             }
         }
         stage('Run tests') {
             steps {
-                sh 'docker build -t doc-test -f dockerfile-test .'
+                sh 'docker build -t sudokuTest -f DockerFileTest .'
             }
         }
     }
