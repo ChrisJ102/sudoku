@@ -24,7 +24,7 @@ pipeline {
                     sh 'docker rmi -f sudokubuild || true'
                     sh 'docker volume create vol_wejsciowy'
                     sh 'docker build -t sudokubuild -f DockerFileBuild .'
-                    sh 'docker run --mount type=volume,src="vol_wejsciowy",dst=/sudoku_1/deploy sudokubuild:latest bash -c "ls -l && cd .. && cp -r /sudoku/sudoku_1/deploy"'
+                    sh 'docker run --mount type=volume,src="vol_wejsciowy",dst=/sudoku_1/deploy sudokubuild:latest bash -c "ls -l && cd .. && cp -r /sudoku /sudoku_1/deploy"'
                     
                 }
             }
