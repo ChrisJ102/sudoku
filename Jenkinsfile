@@ -31,8 +31,8 @@ pipeline {
                     sh 'docker volume create vol_wejsciowy'
                     sh 'docker volume create vol_wyjsciowy'
                     sh 'docker build -t sudokubuild -f DockerFileBuild .'
-                    //sh 'docker run --mount type=volume,src="vol_wejsciowy",dst=/sudoku_1/deploy sudokubuild bash -c "ls -l && cd .. && cp -r /sudoku /sudoku_1/deploy"'
-                    sh 'docker run --mount type=volume,src="vol_wejsciowy",dst=/sudoku_1/deploy sudokubuild:latest bash -c "cd .. &&  cp -r /sudoku /sudoku_1/deploy && cp -r vol_wejsciowy/ vol_wyjsciowy/ && ls ./vol_wejsciowy && ls ./vol_wyjsciowy"'
+                    sh 'docker run --mount type=volume,src="vol_wejsciowy",dst=/sudoku_1/deploy sudokubuild:latest bash -c "ls -l && cd .. && cp -r /sudoku /sudoku_1/deploy"'
+                    //sh 'docker run --mount type=volume,src="vol_wejsciowy",dst=/sudoku_1/deploy sudokubuild:latest bash -c "cd .. &&  cp -r /sudoku /sudoku_1/deploy && cp -r vol_wejsciowy/ vol_wyjsciowy/ && ls ./vol_wejsciowy && ls ./vol_wyjsciowy"'
                     
                 }
             }
