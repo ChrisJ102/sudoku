@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker rm -f sudokudeploy || true'
-		        sh 'docker run -dit --name sudokudeploy --mount type=volume,src="vol_wyjsciowy",dst=/dest node:latest'
+		        sh 'docker run -dit --name sudokudeploy --mount type=volume,src="vol_wejsciowy",dst=/dest node:latest'
                 sh 'docker container exec sudokudeploy sh -c "ls -l && cd dest && ls -l && cd sudoku && ls -l"'
                 //sh 'docker container exec sudokudeploy sh -c "cd dest/sudoku && ls -l && yarn start"'
                 //sh 'docker container kill sudokudeploy'
